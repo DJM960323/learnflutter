@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_final_fields
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -151,5 +153,95 @@ class ClicklDemo extends StatelessWidget {
       },
       child: Text("data"),
     );
+  }
+}
+
+class InputDemo extends StatefulWidget {
+  const InputDemo({Key? key}) : super(key: key);
+
+  @override
+  _InputDemoState createState() => _InputDemoState();
+}
+
+class _InputDemoState extends State<InputDemo> {
+  GlobalKey _key = GlobalKey<FormState>();
+  TextEditingController _userController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  FocusNode _userFocusNode = FocusNode();
+  FocusNode _passwordFocusNode = FocusNode();
+
+  FocusScopeNode? _focusScopeNode = null;
+
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _userController.dispose();
+    _passwordController.dispose();
+
+    _userFocusNode.dispose();
+    _passwordFocusNode.dispose();
+
+    _focusScopeNode?.dispose();
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+        key: _key,
+        child: Column(
+          children: [
+            TextFormField(
+              controller: _userController,
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.add),
+                labelText: "账号",
+                hintText: "请输入账号",
+              ),
+              validator: (v) {
+                if (v == null || v.isEmpty) {
+                  return "账号必须输入";
+                }
+              },
+              textInputAction: TextInputAction.next,
+              onFieldSubmitted: (v){
+                print("object");
+              },
+            ),
+            SizedBox(height: 16),
+            TextFormField(
+              focusNode: _passwordFocusNode,
+              controller: _passwordController,
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.add),
+                labelText: "密码",
+                hintText: "请输入密码",
+              ),
+              validator: (v) {
+                if (v == null || v.length < 5) {
+                  return "密码必须输入,且长度必须大于5";
+                }
+              },
+              obscureText: true,
+              textInputAction: TextInputAction.send,
+
+            ),
+            SizedBox(height: 16),
+            RaisedButton(
+              onPressed: () {
+                if(_focusScopeNode == null){
+                  _focusScopeNode = FocusScope.of(context);
+                }
+                _focusScopeNode?.requestFocus(_userFocusNode);
+                // _focusScopeNode?.unfocus();
+                // print((_key.currentState as FormState).validate().toString());
+              },
+              child: Text("提交"),
+              color: Colors.blue,
+            ),
+          ],
+        ));
   }
 }

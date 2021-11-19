@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
         elevation: 10.0,
         centerTitle: true,
       ),
-      body: ClicklDemo(),
+      body: InputDemo(),
     );
   }
 }
