@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:learnflutter/widgets/demo_01.dart';
 
+import 'widgets/navigator_demo_dart.dart';
 
 main() {
   runApp(MyApp());
@@ -13,7 +14,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      routes: {
+        "/": (context) => LoginPage(),
+      },
+      onGenerateRoute: (RouteSettings s) {
+        print(s.name);
+        switch (s.name) {
+          case "menu":
+            return MaterialPageRoute(
+                builder: (context) {
+                  return MenuPage();
+                },
+                settings: s);
+            break;
+          default:
+        }
+      },
     );
   }
 }
@@ -49,12 +65,13 @@ class _CountPageState extends State<CountPage> {
     return Column(
       children: [
         Text("$count"),
-        RaisedButton(onPressed: () {
-          setState(() {
-            count++;
-          });
-        },
-        child: Text("点击"),
+        RaisedButton(
+          onPressed: () {
+            setState(() {
+              count++;
+            });
+          },
+          child: Text("点击"),
         )
       ],
     );
