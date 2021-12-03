@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:learnflutter/widgets/demo_01.dart';
 
+import 'widgets/layout_demo.dart';
 import 'widgets/navigator_demo_dart.dart';
 
 main() {
@@ -16,7 +17,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         "/": (context) => LoginPage(),
+        "layout":(context) => LayoutDemo(),
       },
+      initialRoute: "layout",
       onGenerateRoute: (RouteSettings s) {
         print(s.name);
         switch (s.name) {
