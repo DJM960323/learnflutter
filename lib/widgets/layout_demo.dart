@@ -84,7 +84,7 @@ class LayoutDemo extends StatelessWidget {
           //   ],
           // ),
 
-          child: EdgeDemo(),
+          child: ContainerDemo(),
         ));
   }
 }
@@ -146,11 +146,11 @@ class StackDemo extends StatelessWidget {
           height: 20,
         ),
         Positioned(
-            width: 20,
-            height: 10,
-            child: Container(
-              color: Colors.yellow,
-            ),
+          width: 20,
+          height: 10,
+          child: Container(
+            color: Colors.yellow,
+          ),
           // top: 10,
           // left: 10,
           // right: 10,
@@ -172,30 +172,101 @@ class AlignDemo extends StatelessWidget {
       height: 200,
       color: Colors.green,
       child: Align(
-        alignment: Alignment(0,0),
+        alignment: Alignment(0, 0),
         child: FlutterLogo(
           size: 60,
-
         ),
       ),
     );
   }
 }
 
-
 class EdgeDemo extends StatelessWidget {
   const EdgeDemo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // return Container(
+    //   width: 100,
+    //   height: 100,
+    //   color: Colors.red,
+    //   margin: EdgeInsets.all( 10),//外边距
+    //   child: Text("data"),
+    //   padding: EdgeInsets.all(20),//内边距
+    // );
+
+    // return ConstrainedBox(
+    //   constraints: BoxConstraints(
+    //     minHeight: 50,
+    //     minWidth: 50,
+    //     maxHeight: 100,
+    //     maxWidth: 100,
+    //   ),
+    //   child: Container(
+    //     color: Colors.black,
+    //     width: 10,
+    //     height: 500,
+    //   ),
+    // );
+
+    // return SizedBox(
+    //   height: 100,
+    //   width: 100,
+    //   child: Container(
+    //     height: 200,
+    //     width: 10,
+    //     color: Colors.yellow,
+    //
+    //   ),
+    // );
+
     return Container(
-      width: 100,
-      height: 100,
-      color: Colors.red,
-      margin: EdgeInsets.all( 10),//外边距
-      child: Text("data"),
-      padding: EdgeInsets.all(20),//内边距
+      margin: EdgeInsets.all(20),
+      width: double.infinity,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.red,
+                Colors.green,
+              ],
+            ),
+            borderRadius: BorderRadius.circular(10.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black45,
+              offset: Offset(2.0,2.0),
+              blurRadius: 4,
+            )
+          ]
+        ),
+        child: Padding(
+          padding: EdgeInsets.only(left: 100, right: 100, top: 20, bottom: 20),
+          child: Text(
+            "注册",
+            style: TextStyle(color: Colors.white),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
     );
   }
 }
 
+class ContainerDemo extends StatelessWidget {
+  const ContainerDemo({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(100),
+      width: 100,
+      height: 100,
+      child: Text("datas"),
+      foregroundDecoration: BoxDecoration(
+        color: Colors.red
+      ),
+      transform: Matrix4.rotationZ(0.5),
+    );
+  }
+}
