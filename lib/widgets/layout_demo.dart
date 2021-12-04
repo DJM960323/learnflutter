@@ -11,7 +11,7 @@ class LayoutDemo extends StatelessWidget {
           centerTitle: true,
         ),
         body: Container(
-          color: Colors.grey,
+          // color: Colors.grey,
           // child: Column(
           //   children: [
           //     Container(
@@ -84,7 +84,7 @@ class LayoutDemo extends StatelessWidget {
           //   ],
           // ),
 
-          child: StackDemo(),
+          child: EdgeDemo(),
         ));
   }
 }
@@ -160,3 +160,42 @@ class StackDemo extends StatelessWidget {
     );
   }
 }
+
+class AlignDemo extends StatelessWidget {
+  const AlignDemo({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(50),
+      width: 200,
+      height: 200,
+      color: Colors.green,
+      child: Align(
+        alignment: Alignment(0,0),
+        child: FlutterLogo(
+          size: 60,
+
+        ),
+      ),
+    );
+  }
+}
+
+
+class EdgeDemo extends StatelessWidget {
+  const EdgeDemo({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 100,
+      height: 100,
+      color: Colors.red,
+      margin: EdgeInsets.all( 10),//外边距
+      child: Text("data"),
+      padding: EdgeInsets.all(20),//内边距
+    );
+  }
+}
+
