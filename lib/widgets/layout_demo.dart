@@ -6,9 +6,11 @@ class LayoutDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
         appBar: AppBar(
           title: Text("布局练习"),
           centerTitle: true,
+
         ),
         body: Container(
           // color: Colors.grey,
